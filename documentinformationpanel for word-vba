@@ -1,0 +1,24 @@
+Sub ListProperties() 'get set documentpanel 读写word文档属性
+ Dim rngDoc As Range
+ Dim proDoc As DocumentProperty
+ Dim proDoc2 As DocumentProperty
+ 
+ Set rngDoc = ActiveDocument.Content
+ 
+ rngDoc.Collapse Direction:=wdCollapseEnd
+ 
+ For Each proDoc In ActiveDocument.BuiltInDocumentProperties
+  If proDoc.Name = "Author" Then
+     For Each proDoc2 In ActiveDocument.BuiltInDocumentProperties
+        If proDoc2.Name = "Company" Then
+        proDoc2.Value = proDoc.Value
+        Exit For
+        End If
+        Next
+        
+ proDoc.Value = "cxl"
+ 
+  End If
+ Next
+ 
+End Sub
